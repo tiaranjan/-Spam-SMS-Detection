@@ -1,0 +1,96 @@
+importing the libraries:-
+
+import numpy as np
+import pandas as pd
+import nltk
+
+read the data set:-
+sms=pd.read_csv('spam.csv', encoding='latin-1')
+sms.head()
+
+sms=sms.drop(["Unnamed: 2","Unnamed: 3","Unnamed: 4"],axis=1)
+sms=sms.rename(columns={"v1":"label","v2":"text"})
+sms.head()
+
+Explore the data:-
+print(" no of rows", len(sms))
+sms.label.value_counts()
+sms.describe()
+sms['length']=sms['text'].apply(len)
+sms.head()
+
+Plot:-
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sms['length'].plot(bins=50, kind='hist',figsize=(10,7))
+sms.hist(column='length', by='label', bins=50, figsize=(15,8))
+sms.loc[:,'label']=sms.label.map({'ham':0, 'spam':1})
+sms.head()
+
+Implement Bag of Words:-
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+
+count=CountVectorizer()
+input=['REMINDER FROM O2: To get 2.50 pounds free call credit and details of great offers pls reply 2 this text with your valid name, house no and postcode']
+
+text=count.fit_transform(sms['text'])
+
+x_train, x_test, y_train, y_test= train_test_split(text, sms['label'], test_size=0.20, random_state=1)
+text
+
+print(x_train.shape)
+print(x_test.shape)
+
+input=text[5571]
+
+
+implementation of ML Model:-
+
+from sklearn.neural_network import MLPClassifier
+
+model=MLPClassifier()
+model.fit(x_train, y_train)
+prediction=model.predict(x_test)
+print(prediction)
+
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+print("Multinomial NB")
+print("Accuracy score: {}". format(accuracy_score(y_test, prediction)) )
+print("Precision score: {}". format(precision_score(y_test, prediction)) )
+print("Recall score: {}". format(recall_score(y_test, prediction)))
+print("F1 score: {}". format(f1_score(y_test, prediction)))
+
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+print("Bernoulli NB")
+print("Accuracy score: {}". format(accuracy_score(y_test, prediction)) )
+print("Precision score: {}". format(precision_score(y_test, prediction)) )
+print("Recall score: {}". format(recall_score(y_test, prediction)))
+print("F1 score: {}". format(f1_score(y_test, prediction)))
+
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+print("MLP Classifier")
+print("Accuracy score: {}". format(accuracy_score(y_test, prediction)) )
+print("Precision score: {}". format(precision_score(y_test, prediction)) )
+print("Recall score: {}". format(recall_score(y_test, prediction)))
+print("F1 score: {}". format(f1_score(y_test, prediction)))
+
+input
+model.predict(input)
+data=sms['text']
+input="To get 2.50 pounds free call credit and details of great offers pls reply 2 this text"
+
+data
+data.loc[len(data.index)]="hfwe ewfjb in jd eif"
+data
+text=count.fit_transform(data)
+text
+input=text[5572]
+model.predict(input)
+
+
+
