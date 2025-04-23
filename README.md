@@ -1,1 +1,3 @@
 # -Spam-SMS-Detection
+
+This project aims to classify SMS messages as spam or ham (not spam) using natural language processing (NLP) and machine learning techniques. The dataset used for training and evaluation is provided in the file named spam.csv, which contains labeled SMS messages. The entire implementation, including data preprocessing, feature extraction (using TF-IDF), and model training (using algorithms like Naive Bayes), is done in a Jupyter Notebook for better visualization and interactivity. This project is a great starting point for learning about text classification in real-world scenarios.
